@@ -1,5 +1,4 @@
-"use client";
-import { Button, Card, CardContent, } from "@mui/material";
+import { Button, Card, CardContent, Typography } from "@mui/material";
 import { formatCurrency } from "@/utils/format";
 
 export default function HomePage() {
@@ -7,7 +6,7 @@ export default function HomePage() {
     <main className="min-h-screen flex items-center justify-center p-6">
       <Card className="w-full max-w-md">
         <CardContent className="flex flex-col items-center gap-4">
-          <div className="font-bold text-40-48">Next.js 15 Base</div>
+          <Typography variant="h5" className="!font-bold">Next.js 15 Base</Typography>
           <p className="text-gray-600">Giá demo: {formatCurrency(1234567)}</p>
           <Button variant="contained">MUI Button</Button>
         </CardContent>
