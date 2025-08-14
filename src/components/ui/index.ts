@@ -16,6 +16,7 @@ export { default as Flex } from './Flex';
 export { default as Divider } from './Divider';
 export { default as Spinner } from './Spinner';
 export { default as Progress } from './Progress';
+export { default as NoSSR } from './NoSSR';
 
 // Re-export types
 export type {

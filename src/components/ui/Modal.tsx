@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import { ModalProps } from "@/interfaces/components";
 import { cn } from "@/helpers/utils/cn";
+import { useHydration } from "@/hooks/useHydration";
 
 const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
   (
@@ -19,7 +20,11 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     },
     ref
   ) => {
+    const mounted = useHydration();
+
     useEffect(() => {
+      if (!mounted) return;
+
       const handleEscape = (event: KeyboardEvent) => {
         if (event.key === "Escape" && closeOnEscape) {
           onClose();
@@ -35,7 +40,7 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
         document.removeEventListener("keydown", handleEscape);
         document.body.style.overflow = "unset";
       };
-    }, [isOpen, onClose, closeOnEscape]);
+    }, [isOpen, onClose, closeOnEscape, mounted]);
 
     const handleOverlayClick = (event: React.MouseEvent) => {
       if (event.target === event.currentTarget && closeOnOverlayClick) {
@@ -51,7 +56,8 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       full: "max-w-full mx-4",
     };
 
-    if (!isOpen) return null;
+    // Don't render anything on the server if not mounted
+    if (!mounted || !isOpen) return null;
 
     return (
       <div className='fixed inset-0 z-50 overflow-y-auto'>
