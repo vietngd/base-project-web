@@ -1,30 +1,20 @@
-import {
-  colors,
-  typography,
-  radius,
-  shadow,
-  fontSize,
-} from "./src/design-system/tokens";
+import type { Config } from 'tailwindcss'
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+const config: Config = {
   content: [
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
-      colors: { ...colors },
-      fontFamily: {
-        sans: [typography.fontFamily, "sans-serif"],
+      colors: {
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
       },
-      fontSize: {
-        ...typography.fontSize, // nếu bạn vẫn muốn giữ font-size tĩnh
-        ...fontSize, // thêm font-size responsive
-      },
-      borderRadius: radius,
-      boxShadow: shadow,
     },
   },
   plugins: [],
-};
+}
+
+export default config
